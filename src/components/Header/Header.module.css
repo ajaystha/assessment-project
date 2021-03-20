@@ -3,9 +3,15 @@
   left: 0;
   top: 0;
   right: 0;
-  padding: 20px 35px;
+  padding: 20px 0;
   background-color: #fff;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.09);
+  z-index: 2;
+}
+
+.HeaderWrapper {
+  margin: 0 auto;
+  max-width: var(--wrapper-max-width);
 }
 
 .AppLogo {
