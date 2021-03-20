@@ -1,0 +1,15 @@
+.Header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  padding: 20px 35px;
+  background-color: #fff;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.09);
+}
+
+.AppLogo {
+  color: var(--main-color);
+  width: 115px;
+  height: 30px;
+}

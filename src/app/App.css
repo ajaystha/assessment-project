@@ -1,3 +1,8 @@
 .App {
-  text-align: center;
+}
+
+.AppMainContent {
+  margin-top: 100px;
+  min-height: calc(100vh - 100px);
+  background-color: var(--main-background);
 }
