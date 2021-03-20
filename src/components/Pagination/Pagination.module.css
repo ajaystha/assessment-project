@@ -1,0 +1,44 @@
+.Pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Pagination .Button + .Button {
+  margin-left: 10px;
+}
+
+.Button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--main-color);
+  border-radius: 50%;
+  font-weight: 600;
+  color: var(--main-color);
+  background-color: white;
+  cursor: pointer;
+  transition: color 0.2s ease-in, background-color 0.2s ease-in;
+}
+
+.Button:disabled {
+  border-color: var(--light-gray);
+  color: var(--light-gray);
+  cursor: default;
+}
+
+.Button:not(:disabled):hover,
+.ActiveButton {
+  color: white;
+  background-color: var(--main-color);
+}
+
+.ChevronIcon {
+  width: 30px;
+  height: 30px;
+}
+.ChevronRight {
+  transform: scaleX(-1);
+}

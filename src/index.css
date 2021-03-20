@@ -15,6 +15,7 @@ body {
 :root {
   --main-color: #ff7f66;
   --main-background: #fcfcfc;
+  --light-gray: #ccc;
   --font-main: #333;
   --font-light: #707070;
 

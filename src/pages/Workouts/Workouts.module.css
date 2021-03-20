@@ -1,4 +1,24 @@
 .WorkoutsContainer {
-  margin: 0 auto;
+  margin: 0 auto 50px;
   width: var(--wrapper-max-width);
+}
+
+.WorkoutListTitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 35px;
+}
+
+.ErrorMessage {
+  margin-top: 75px;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.PaginationContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 35px;
 }

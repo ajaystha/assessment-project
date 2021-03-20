@@ -1,15 +1,5 @@
-.List {
-}
-
-.ListTitle {
-  font-size: 1.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-bottom: 35px;
-}
-
-.ListContent > div + div {
-  margin-top: 15px;
+.ListContainer > div + div {
+  margin-top: 7px;
 }
 
 .ListItem {

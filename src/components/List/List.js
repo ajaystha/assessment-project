@@ -2,8 +2,7 @@ import { useHistory } from 'react-router-dom';
 
 import s from './List.module.css';
 
-export default function List(props) {
-  const { title, data } = props;
+export default function List({ data }) {
   const history = useHistory();
 
   const clickHandler = (id) => {
@@ -14,15 +13,11 @@ export default function List(props) {
 
   return (
     <div className={s.ListContainer}>
-      {title && <div className={s.ListTitle}>{title}</div>}
-
-      <div className={s.ListContent}>
-        {data.map((item) => (
-          <div className={s.ListItem} onClick={() => clickHandler(item.id)}>
-            {item.name}
-          </div>
-        ))}
-      </div>
+      {data.map((item) => (
+        <div key={item.id} className={s.ListItem} onClick={() => clickHandler(item.id)}>
+          {item.name}
+        </div>
+      ))}
     </div>
   );
 }
