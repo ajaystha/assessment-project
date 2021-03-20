@@ -1,0 +1,25 @@
+.WorkoutDetailsContainer {
+  margin: 0 auto;
+  width: var(--wrapper-max-width);
+}
+
+.WorkoutDetailsContainer > div span {
+  font-weight: 700;
+}
+
+.BackButton {
+  padding: 6px 15px;
+  font-size: 0.9em;
+  font-weight: 500;
+  color: white;
+  background-color: var(--main-color);
+  border-radius: 3px;
+  text-decoration: none;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+.ErrorMessage {
+  margin-top: 50px;
+  font-size: 1.2em;
+  text-align: center;
+}

@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 
 import Header from '../components/Header';
 import Workouts from '../pages/Workouts';
+import WorkoutDetails from '../pages/WorkoutDetails';
 
 import './App.css';
 
@@ -22,7 +23,7 @@ function App() {
             </Route>
 
             <Route path="/workouts/:workoutId" exact>
-              <div>Workout details page</div>
+              <WorkoutDetails />
             </Route>
 
             <Route path="*">
