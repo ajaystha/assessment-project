@@ -1,0 +1,26 @@
+.List {
+}
+
+.ListTitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 35px;
+}
+
+.ListContent > div + div {
+  margin-top: 15px;
+}
+
+.ListItem {
+  padding: 12px 15px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 4px;
+  transition: transform 0.25s ease-out, box-shadow 0.2s ease-out;
+}
+
+.ListItem:hover {
+  transform: scale(1.01);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 4px;
+}

@@ -8,6 +8,8 @@ body {
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  color: var(--font-main);
 }
 
 :root {
@@ -15,4 +17,6 @@ body {
   --main-background: #fcfcfc;
   --font-main: #333;
   --font-light: #707070;
+
+  --wrapper-max-width: 1200px;
 }

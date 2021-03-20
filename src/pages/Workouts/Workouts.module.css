@@ -1,0 +1,4 @@
+.WorkoutsContainer {
+  margin: 0 auto;
+  width: var(--wrapper-max-width);
+}

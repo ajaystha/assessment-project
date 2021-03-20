@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import Header from '../components/Header';
+import Workouts from '../pages/Workouts';
 
 import './App.css';
 
@@ -17,11 +18,15 @@ function App() {
             </Route>
 
             <Route path="/workouts" exact>
-              <div>Workout List page</div>
+              <Workouts />
             </Route>
 
-            <Route path="/workouts/:workoutId">
+            <Route path="/workouts/:workoutId" exact>
               <div>Workout details page</div>
+            </Route>
+
+            <Route path="*">
+              <Redirect to="/workouts" />
             </Route>
           </Switch>
         </Router>
