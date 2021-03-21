@@ -12,6 +12,10 @@ body {
   color: var(--font-main);
 }
 
+select {
+  font-family: inherit;
+}
+
 :root {
   --main-color: #ff7f66;
   --main-background: #fcfcfc;

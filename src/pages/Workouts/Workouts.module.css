@@ -16,6 +16,13 @@
   text-align: center;
 }
 
+.FilterContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
 .PaginationContainer {
   display: flex;
   justify-content: space-between;

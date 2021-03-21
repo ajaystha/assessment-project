@@ -1,0 +1,7 @@
+.CategoryFilterContainer {
+  display: flex;
+}
+
+.CategoryFilterContainer > div + div {
+  margin-left: 10px;
+}
