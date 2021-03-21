@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch, useRouteMatch, Redirect } from 'react-router-dom';
 
 import WorkoutList from './WorkoutList';
@@ -12,6 +12,10 @@ export default function Workouts() {
   const [page, setPage] = useState(1);
   const [monthFilter, setMonthFilter] = useState(null);
   const [catFilter, setCatFilter] = useState([]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [monthFilter, catFilter]);
 
   return (
     <div className={s.WorkoutsContainer}>

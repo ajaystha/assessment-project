@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link, useHistory } from 'react-router-dom';
 
+import Spinner from '../../components/Spinner';
 import Chevron from '../../components/Icons/Chevron';
 
 import s from './WorkoutDetails.module.css';
@@ -11,6 +12,7 @@ export default function WorkoutDetails() {
 
   const [workout, setWorkout] = useState(null);
   const [fetchError, setFetchError] = useState(false);
+  const [isFetching, setFetching] = useState(false);
 
   useEffect(() => {
     if (isNaN(workoutId)) {
@@ -25,6 +27,7 @@ export default function WorkoutDetails() {
 
   // Get workout details by ID
   const loadWorkoutById = async () => {
+    setFetching(true);
     setFetchError(false);
 
     try {
@@ -39,6 +42,8 @@ export default function WorkoutDetails() {
       setWorkout(data);
     } catch (error) {
       setFetchError(true);
+    } finally {
+      setFetching(false);
     }
   };
 
@@ -52,7 +57,9 @@ export default function WorkoutDetails() {
 
       {fetchError && <div className={s.Message}>There was a problem loading data</div>}
 
-      {workout && (
+      {isFetching && <Spinner />}
+
+      {!isFetching && workout && (
         <>
           <h1 className={s.Title}>{workout.name}</h1>
 

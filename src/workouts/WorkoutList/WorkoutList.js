@@ -5,6 +5,8 @@ import MonthFilter from '../../components/Filters/MonthFilter';
 import CategoryFilter from '../../components/Filters/CategoryFilter';
 import Pagination from '../../components/Pagination';
 
+import Spinner from '../../components/Spinner';
+
 import s from './WorkoutList.module.css';
 
 export default function Workouts(props) {
@@ -16,6 +18,7 @@ export default function Workouts(props) {
   const [workouts, setWorkouts] = useState([]);
   const [totalItems, setTotalItems] = useState(0);
   const [fetchError, setFetchError] = useState(false);
+  const [isFetching, setFetching] = useState(false);
   const [itemsPerPage] = useState(20);
 
   useEffect(() => {
@@ -41,9 +44,10 @@ export default function Workouts(props) {
 
   // get workout list
   const loadWorkouts = async () => {
+    setFetching(true);
     setFetchError(false);
 
-    let params = `_page=${page}&_limit=${itemsPerPage}`;
+    let params = `page=${page}&limit=${itemsPerPage}`;
     const filters = generateFilters();
 
     if (filters) {
@@ -64,12 +68,32 @@ export default function Workouts(props) {
       return { data, totalItems };
     } catch (error) {
       setFetchError(true);
+    } finally {
+      setFetching(false);
     }
   };
 
   // calculate total number of pages
   const calculateTotalPages = () => {
     return Math.ceil(totalItems / itemsPerPage);
+  };
+
+  const renderWorkoutList = () => {
+    return (
+      <div className={s.ListContainer}>
+        {totalItems < 1 ? (
+          <div className={s.Message}>No workouts available</div>
+        ) : (
+          <>
+            {workouts.map((item) => (
+              <div key={item.id} className={s.ListItem} onClick={() => push(`${path}/${item.id}`)}>
+                {item.name}
+              </div>
+            ))}
+          </>
+        )}
+      </div>
+    );
   };
 
   return (
@@ -86,21 +110,12 @@ export default function Workouts(props) {
             <CategoryFilter selected={catFilter} onToggleCategory={onUpdateCatFilter} />
           </div>
 
-          {totalItems < 1 ? (
-            <div className={s.Message}>No workouts available</div>
-          ) : (
+          {isFetching && <Spinner />}
+
+          {!isFetching && (
             <>
-              <div className={s.ListContainer}>
-                {workouts.map((item) => (
-                  <div
-                    key={item.id}
-                    className={s.ListItem}
-                    onClick={() => push(`${path}/${item.id}`)}
-                  >
-                    {item.name}
-                  </div>
-                ))}
-              </div>
+              {/* renders the workout list */}
+              {renderWorkoutList()}
 
               <div className={s.PaginationContainer}>
                 <div className={s.TotalText}>Total Workouts: {totalItems}</div>
