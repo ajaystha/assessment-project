@@ -6,16 +6,17 @@ export function makeServer({ environment = 'development' } = {}) {
     environment,
 
     routes() {
-      this.timing = 400;
+      this.timing = 800;
       this.namespace = '/api';
 
       // all workouts
       this.get('/workouts', (schema, request) => {
         const { page, limit, month, categories } = request.queryParams;
 
-        const filtered = generateFilteredData(page, limit, month, categories);
+        const filtered = filterData(month, categories);
+        const paginated = paginateData([...filtered], page, limit);
 
-        return { workouts: filtered, totalCount: filtered.length };
+        return { workouts: paginated, totalCount: filtered.length };
       });
 
       // workouts by ID
@@ -37,7 +38,7 @@ export function makeServer({ environment = 'development' } = {}) {
 }
 
 // generate filtered data from request url params
-const generateFilteredData = (page, limit, month, categories) => {
+const filterData = (month, categories) => {
   let filtered = [];
 
   if (month && categories) {
@@ -61,6 +62,11 @@ const generateFilteredData = (page, limit, month, categories) => {
     filtered = [...workouts];
   }
 
+  return filtered;
+};
+
+const paginateData = (data, page, limit) => {
   const startIdx = (page - 1) * limit;
-  return filtered.slice(startIdx, limit);
+
+  return data.splice(startIdx, limit);
 };

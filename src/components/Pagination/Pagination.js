@@ -81,18 +81,14 @@ export default function Pagination(props) {
 
   return (
     <div className={clsx(s.Pagination, className)}>
-      <button
-        className={s.Button}
-        disabled={checkDisabled('first')}
-        onClick={() => goToPage('first')}
-      >
+      <button className={s.Button} onClick={() => onSetPage(1)} disabled={checkDisabled('first')}>
         <ChevronDoubleIcon className={s.ChevronIcon} />
       </button>
 
       <button
         className={s.Button}
-        disabled={checkDisabled('previous')}
         onClick={() => goToPage('previous')}
+        disabled={checkDisabled('previous')}
       >
         <ChevronIcon className={s.ChevronIcon} />
       </button>
@@ -117,7 +113,7 @@ export default function Pagination(props) {
 
       <button
         className={clsx(s.Button, s.ChevronRight)}
-        onClick={() => goToPage('last')}
+        onClick={() => onSetPage(totalPages)}
         disabled={checkDisabled('last')}
       >
         <ChevronDoubleIcon className={s.ChevronIcon} />
