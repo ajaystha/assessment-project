@@ -12,33 +12,21 @@ export default function MonthFilter(props) {
   }, []);
 
   function generateMonths() {
-    const month_names = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ];
-
-    const now = new Date();
-    let month = now.getMonth();
-    let year = now.getFullYear();
+    let current = new Date();
+    let month = current.getMonth();
+    let year = current.getFullYear();
 
     let month_arr = [];
 
     for (let i = 0; i < 12; i++) {
-      const id = ('0' + (month + 1)).slice(-2);
+      if (i > 0) {
+        current.setMonth(month);
+      }
 
+      const month_name = current.toLocaleString('default', { month: 'long' });
       month_arr.push({
-        id,
-        name: month_names[month] + ' ' + year,
+        id: ('0' + (month + 1)).slice(-2),
+        name: `${month_name} ${year}`,
       });
 
       if (++month === 12) {
