@@ -4,10 +4,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Libraries used
 
-<!-- #TODO: Add description -->
+- [react-router](https://reactrouter.com/web/guides/quick-start): manage routing in the client app
+- [miragejs](https://miragejs.com/): create mock API for data
+- [clsx](https://github.com/lukeed/clsx/): helper for adding multiple classNames in react components
 
-- [react-router](https://reactrouter.com/web/guides/quick-start)
-- [json-server](https://github.com/typicode/json-server)
+# Usage
+
+- Clone the project with git: `git clone https://github.com/ajaystha/assessment-project.git`
+- Inside the project directory run `yarn install` to install dependencies
 
 ## Available Scripts
 
