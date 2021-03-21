@@ -1,20 +1,22 @@
 import { useEffect, useState } from 'react';
+import { useRouteMatch, useHistory } from 'react-router-dom';
 
-import List from '../../components/List';
 import MonthFilter from '../../components/Filters/MonthFilter';
 import CategoryFilter from '../../components/Filters/CategoryFilter';
 import Pagination from '../../components/Pagination';
 
-import s from './Workouts.module.css';
+import s from './WorkoutList.module.css';
 
-export default function Workouts() {
+export default function Workouts(props) {
+  const { page, monthFilter, catFilter, onSetPage, onUpdateMonthFilter, onUpdateCatFilter } = props;
+
+  const { path } = useRouteMatch();
+  const { push } = useHistory();
+
   const [workouts, setWorkouts] = useState([]);
   const [totalItems, setTotalItems] = useState(0);
   const [fetchError, setFetchError] = useState(false);
-  const [page, setPage] = useState(1);
   const [itemsPerPage] = useState(20);
-  const [monthFilter, setMonthFilter] = useState(null);
-  const [catFilter, setCatFilter] = useState([]);
 
   useEffect(() => {
     loadWorkouts();
@@ -22,10 +24,7 @@ export default function Workouts() {
     // eslint-disable-next-line
   }, [page, monthFilter, catFilter]);
 
-  const workoutSelectHandler = (workoutId) => {
-    alert(workoutId);
-  };
-
+  // generate filters
   const generateFilters = () => {
     let filters = '';
 
@@ -68,32 +67,40 @@ export default function Workouts() {
     }
   };
 
+  // calculate total number of pages
   const calculateTotalPages = () => {
     return Math.ceil(totalItems / itemsPerPage);
   };
 
   return (
-    <div className={s.WorkoutsContainer}>
+    <div className={s.WorkoutListContainer}>
       <div className={s.WorkoutListTitle}>Workouts</div>
 
-      {fetchError && <div className={s.ErrorMessage}>There was a problem loading data</div>}
+      {fetchError && <div className={s.Message}>There was a problem loading data</div>}
 
       {!fetchError && (
         <>
           <div className={s.FilterContainer}>
-            <MonthFilter selected={monthFilter} onSelectMonth={(value) => setMonthFilter(value)} />
+            <MonthFilter selected={monthFilter} onSelectMonth={onUpdateMonthFilter} />
 
-            <CategoryFilter
-              selected={catFilter}
-              onToggleCategory={(value) => setCatFilter(value)}
-            />
+            <CategoryFilter selected={catFilter} onToggleCategory={onUpdateCatFilter} />
           </div>
 
           {totalItems < 1 ? (
-            <div className={s.ErrorMessage}>No workouts available</div>
+            <div className={s.Message}>No workouts available</div>
           ) : (
             <>
-              <List title="Workouts" data={workouts} onItemClick={workoutSelectHandler} />
+              <div className={s.ListContainer}>
+                {workouts.map((item) => (
+                  <div
+                    key={item.id}
+                    className={s.ListItem}
+                    onClick={() => push(`${path}/${item.id}`)}
+                  >
+                    {item.name}
+                  </div>
+                ))}
+              </div>
 
               <div className={s.PaginationContainer}>
                 <div className={s.TotalText}>Total Workouts: {totalItems}</div>
@@ -104,7 +111,7 @@ export default function Workouts() {
                     totalPages={calculateTotalPages()}
                     currentPage={page}
                     pagesToShow={10}
-                    onSetPage={(page) => setPage(page)}
+                    onSetPage={onSetPage}
                   />
                 )}
               </div>

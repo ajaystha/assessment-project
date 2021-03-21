@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link, useHistory } from 'react-router-dom';
 
+import Chevron from '../../components/Icons/Chevron';
+
 import s from './WorkoutDetails.module.css';
 
 export default function WorkoutDetails() {
@@ -43,10 +45,12 @@ export default function WorkoutDetails() {
   return (
     <div className={s.WorkoutDetailsContainer}>
       <Link className={s.BackButton} to="/workouts">
-        &lt; Back
+        <div className={s.ButtonWrapper}>
+          <Chevron className={s.ButtonIcon} /> Back
+        </div>
       </Link>
 
-      {fetchError && <div className={s.ErrorMessage}>There was a problem loading data</div>}
+      {fetchError && <div className={s.Message}>There was a problem loading data</div>}
 
       {workout && (
         <>

@@ -1,14 +1,11 @@
-.WorkoutDetailsContainer {
-  margin: 0 auto;
-  width: var(--wrapper-max-width);
-}
-
 .WorkoutDetailsContainer > div span {
   font-weight: 700;
 }
 
 .BackButton {
-  padding: 6px 15px;
+  display: inline-block;
+  padding: 6px 20px;
+  width: 100px;
   font-size: 0.9em;
   font-weight: 500;
   color: white;
@@ -18,7 +15,16 @@
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
 }
 
-.ErrorMessage {
+.ButtonWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.ButtonIcon {
+  font-size: 1.2em;
+}
+
+.Message {
   margin-top: 50px;
   font-size: 1.2em;
   text-align: center;
