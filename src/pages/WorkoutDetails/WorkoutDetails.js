@@ -26,7 +26,7 @@ export default function WorkoutDetails() {
     setFetchError(false);
 
     try {
-      const response = await fetch(`/workouts/${workoutId}`);
+      const response = await fetch(`/api/workouts/${workoutId}`);
 
       // check it status is ok
       if (response.status !== 200) throw new Error();

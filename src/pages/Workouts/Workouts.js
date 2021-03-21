@@ -22,15 +22,15 @@ export default function Workouts() {
     // eslint-disable-next-line
   }, [page, monthFilter, catFilter]);
 
-  const workoutSelectHandler = (workout_id) => {
-    alert(workout_id);
+  const workoutSelectHandler = (workoutId) => {
+    alert(workoutId);
   };
 
   const generateFilters = () => {
     let filters = '';
 
     if (monthFilter) {
-      filters = `${filters}&startDate=${monthFilter}`;
+      filters = `${filters}&month=${monthFilter}`;
     }
 
     if (catFilter.length > 0) {
@@ -52,18 +52,16 @@ export default function Workouts() {
     }
 
     try {
-      // const response = await fetch(`/workouts?_page=${page}&_limit=${itemsPerPage}`);
-      const response = await fetch(`/workouts?${params}`);
+      const response = await fetch(`/api/workouts?${params}`);
 
       // check it status is ok
       if (response.status !== 200) throw new Error();
 
       const data = await response.json();
-      const totalCount = response.headers.get('X-Total-Count');
 
       // set data in states
-      setWorkouts(data);
-      setTotalItems(totalCount || null);
+      setWorkouts(data.workouts);
+      setTotalItems(data.totalCount);
       return { data, totalItems };
     } catch (error) {
       setFetchError(true);
@@ -78,9 +76,9 @@ export default function Workouts() {
     <div className={s.WorkoutsContainer}>
       <div className={s.WorkoutListTitle}>Workouts</div>
 
-      {fetchError ? (
-        <div className={s.ErrorMessage}>There was a problem loading data</div>
-      ) : (
+      {fetchError && <div className={s.ErrorMessage}>There was a problem loading data</div>}
+
+      {!fetchError && (
         <>
           <div className={s.FilterContainer}>
             <MonthFilter selected={monthFilter} onSelectMonth={(value) => setMonthFilter(value)} />
@@ -91,21 +89,27 @@ export default function Workouts() {
             />
           </div>
 
-          <List title="Workouts" data={workouts} onItemClick={workoutSelectHandler} />
+          {totalItems < 1 ? (
+            <div className={s.ErrorMessage}>No workouts available</div>
+          ) : (
+            <>
+              <List title="Workouts" data={workouts} onItemClick={workoutSelectHandler} />
 
-          <div className={s.PaginationContainer}>
-            <div className={s.TotalText}>Total Workouts: {totalItems}</div>
+              <div className={s.PaginationContainer}>
+                <div className={s.TotalText}>Total Workouts: {totalItems}</div>
 
-            {totalItems > itemsPerPage && (
-              <Pagination
-                className={s.Pagination}
-                totalPages={calculateTotalPages()}
-                currentPage={page}
-                pagesToShow={10}
-                onSetPage={(page) => setPage(page)}
-              />
-            )}
-          </div>
+                {totalItems > itemsPerPage && (
+                  <Pagination
+                    className={s.Pagination}
+                    totalPages={calculateTotalPages()}
+                    currentPage={page}
+                    pagesToShow={10}
+                    onSetPage={(page) => setPage(page)}
+                  />
+                )}
+              </div>
+            </>
+          )}
         </>
       )}
     </div>
