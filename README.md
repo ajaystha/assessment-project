@@ -10,6 +10,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [miragejs](https://miragejs.com/): create mock API for data
 - [clsx](https://github.com/lukeed/clsx/): helper for adding multiple classNames in react components
 
+# Note
+
+This project has been created using `yarn`, but `npm` can also be used. If using `npm` just repace `yarn` with `npm` in the scripts below.
+
 ## Getting started
 
 - Clone the project with git: `git clone https://github.com/ajaystha/assessment-project.git`
