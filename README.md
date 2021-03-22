@@ -12,7 +12,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Note
 
-This project has been created using `yarn`, but `npm` can also be used. If using `npm` just repace `yarn` with `npm` in the scripts below.
+This project has been created using `yarn`, but `npm` can also be used. If using `npm` just relpace `yarn` with `npm` in the scripts below.
 
 ## Getting started
 
