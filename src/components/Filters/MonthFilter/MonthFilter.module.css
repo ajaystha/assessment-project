@@ -1,7 +1,9 @@
 .Select {
-  padding: 6px 10px;
+  padding: 6px 30px 7px 15px;
   border: 1px solid var(--light-gray);
-  background-color: transparent;
+  border-radius: 3px;
+  appearance: none;
+  background: url(../../../assets/chevron-down.svg) no-repeat right 2px center;
 }
 .Select option {
   text-transform: capitalize;
