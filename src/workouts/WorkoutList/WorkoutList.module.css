@@ -37,5 +37,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 35px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.TotalText {
+  padding: 15px 5px;
 }
