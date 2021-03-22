@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouteMatch, useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import MonthFilter from '../../components/Filters/MonthFilter';
 import CategoryFilter from '../../components/Filters/CategoryFilter';
@@ -9,7 +10,7 @@ import Spinner from '../../components/Spinner';
 
 import s from './WorkoutList.module.css';
 
-export default function Workouts(props) {
+export default function WorkoutList(props) {
   const { page, monthFilter, catFilter, onSetPage, onUpdateMonthFilter, onUpdateCatFilter } = props;
 
   const { path } = useRouteMatch();
@@ -137,3 +138,12 @@ export default function Workouts(props) {
     </div>
   );
 }
+
+WorkoutList.propTypes = {
+  page: PropTypes.number,
+  monthFilter: PropTypes.string,
+  catFilter: PropTypes.array,
+  onSetPage: PropTypes.func.isRequired,
+  onUpdateMonthFilter: PropTypes.func.isRequired,
+  onUpdateCatFilter: PropTypes.func.isRequired,
+};

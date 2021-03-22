@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import s from './CategoryFilter.module.css';
 
 import Checkbox from '../../CheckBox';
@@ -42,3 +44,8 @@ export default function CategoryFilter(props) {
     </div>
   );
 }
+
+CategoryFilter.propTypes = {
+  selected: PropTypes.array,
+  onToggleCategory: PropTypes.func.isRequired,
+};

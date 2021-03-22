@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 import s from './MonthFilter.module.css';
 
@@ -62,3 +63,8 @@ export default function MonthFilter(props) {
     </select>
   );
 }
+
+MonthFilter.propTypes = {
+  selected: PropTypes.string,
+  onSelectMonth: PropTypes.func.isRequired,
+};

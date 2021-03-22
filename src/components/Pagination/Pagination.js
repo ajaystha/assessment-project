@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
 import ChevronIcon from '../Icons/Chevron';
 import ChevronDoubleIcon from '../Icons/ChevronDouble';
@@ -121,3 +122,15 @@ export default function Pagination(props) {
     </div>
   );
 }
+
+Pagination.defaultProps = {
+  pagesToShow: 5,
+};
+
+Pagination.propTypes = {
+  className: PropTypes.string,
+  totalPages: PropTypes.number.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  pagesToShow: PropTypes.number,
+  onSetPage: PropTypes.func.isRequired,
+};
