@@ -1,6 +1,7 @@
 .Select {
   padding: 6px 10px;
-  border-color: var(--light-gray);
+  border: 1px solid var(--light-gray);
+  background-color: transparent;
 }
 .Select option {
   text-transform: capitalize;
